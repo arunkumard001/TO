@@ -32,9 +32,13 @@ Hive is a lightweight and blazing fast key-value database written in pure Dart.
 🔋 Batteries included
 IN my project there are for type of data storage in hive all type in lib\app\data\todo.dart
 #screen:
-![Screenshot_20211120-232734](https://user-images.githubusercontent.com/43039921/142737405-6df8cb76-08a8-46f4-8530-d95aea2407f6.jpg)
-![Screenshot_20211120-232747](https://user-images.githubusercontent.com/43039921/142737418-8e04546f-4632-410d-a4c2-0c194614a6eb.jpg)
-![Screenshot_20211120-232728](https://user-images.githubusercontent.com/43039921/142737412-e3364155-c88f-4998-952f-d4e50b7d95c2.jpg)
+
+
+<img src="https://user-images.githubusercontent.com/43039921/142737405-6df8cb76-08a8-46f4-8530-d95aea2407f6.jpg" width="200" height="350">
+<img src="https://user-images.githubusercontent.com/43039921/142737418-8e04546f-4632-410d-a4c2-0c194614a6eb.jpg" width="200" height="350">
+<img src="https://user-images.githubusercontent.com/43039921/142737412-e3364155-c88f-4998-952f-d4e50b7d95c2.jpg" width="200" height="350">
+
+
 the output file in
  apk folder :build\app\outputs\flutter-apk\app-release.apk
  web folder : build\web

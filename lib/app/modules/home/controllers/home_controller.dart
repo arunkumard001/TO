@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to/app/data/todo.dart';
+import 'package:to/app/modules/home/views/todoadd.dart';
 
 class HomeController extends GetxController {
-  late Box<Todo> todoBox;
+  Box todoBox = Hive.box<Todo>("todos");
   List<Todo> _todos = [];
   List<Todo> get todos => _todos;
   addTodo(Todo todo) {

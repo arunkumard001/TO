@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:to/app/data/todo.dart';
-
+import 'package:to/app/modules/home/views/todoadd.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -10,6 +9,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text('Todo App'),
           centerTitle: true,
@@ -21,11 +21,12 @@ class HomeView extends GetView<HomeController> {
               itemBuilder: (context, index) {
                 return ListTile(
                     onTap: () {
-                      showBottomSheet(
+                      showModalBottomSheet(
+                        isScrollControlled: true,
                         context: context,
                         builder: (context) {
                           return TodoAdd(
-                            todo: todocontroller.todos[index],
+                            todocontroller.todos[index],
                             type: "update",
                           );
                         },
@@ -47,69 +48,20 @@ class HomeView extends GetView<HomeController> {
                     ));
               });
         }),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          showBottomSheet(
-            context: context,
-            builder: (context) {
-              return TodoAdd(
-                type: "new",
-              );
-            },
-          );
-        }));
-  }
-}
-
-class TodoAdd extends StatefulWidget {
-  String type;
-  Todo todo;
-  TodoAdd({Key? key, required this.type, this.todo}) : super(key: key);
-  @override
-  State<TodoAdd> createState() => _TodoAddState();
-}
-
-class _TodoAddState extends State<TodoAdd> {
-  final _formkey = GlobalKey<FormState>();
-  String description = '';
-  final todocontroller = Get.find<HomeController>();
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Form(
-          key: _formkey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Add a Note"),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                initialValue:
-                    widget.todo != null ? widget.todo.description : "",
-                onSaved: (value) {
-                  description = value.toString();
-                },
-                decoration: InputDecoration(hintText: "Add Description"),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextButton(
-                onPressed: () {
-                  _formkey.currentState!.save();
-                  if (widget.type == 'new') {
-                    todocontroller.addTodo(Todo(description: description));
-                  } else {
-                    todocontroller.updateTodo(widget.todo, description);
-                  }
-                  Navigator.of(context).pop();
-                },
-                child: Text(widget.todo != null ? "update" : "Add a Note"),
-              )
-            ],
-          )),
-    );
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              Future.delayed(Duration.zero, () async {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (context) {
+                      return TodoAdd(
+                        Todo(description: ""),
+                        type: "new",
+                      );
+                    });
+              });
+            }));
   }
 }

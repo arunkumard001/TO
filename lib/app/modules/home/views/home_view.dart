@@ -11,6 +11,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         appBar: AppBar(
+          backgroundColor: Colors.teal,
           title: Text('Todo App'),
           centerTitle: true,
         ),
@@ -22,6 +23,9 @@ class HomeView extends GetView<HomeController> {
                 return ListTile(
                     onTap: () {
                       showModalBottomSheet(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         isScrollControlled: true,
                         context: context,
                         builder: (context) {
@@ -60,6 +64,9 @@ class HomeView extends GetView<HomeController> {
   Future<dynamic> showDetail(BuildContext context, _type) {
     return showModalBottomSheet(
         isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         context: context,
         builder: (context) {
           return TodoAdd(

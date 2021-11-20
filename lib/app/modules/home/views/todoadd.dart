@@ -33,17 +33,28 @@ class _TodoAddState extends State<TodoAdd> {
               SizedBox(
                 height: 10,
               ),
-              Text("Add a Note"),
+              Text(
+                "Add a Note",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              ),
               SizedBox(
                 height: 10,
               ),
-              TextFormField(
-                initialValue:
-                    widget.todo != null ? widget.todo.description : "",
-                onSaved: (value) {
-                  description = value.toString();
-                },
-                decoration: InputDecoration(hintText: "Add Description"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  autofocus: true,
+                  maxLength: 256,
+                  maxLines: 2,
+                  initialValue:
+                      widget.todo != null ? widget.todo.description : "",
+                  onSaved: (value) {
+                    description = value.toString();
+                  },
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Add Description"),
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -58,7 +69,7 @@ class _TodoAddState extends State<TodoAdd> {
                   }
                   Navigator.of(context).pop();
                 },
-                child: Text(widget.todo == "update" ? "update" : "new"),
+                child: Text(widget.type == "new" ? "New" : "UPDATE"),
               )
             ],
           )),

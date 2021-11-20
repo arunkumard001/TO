@@ -1,0 +1,6 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/caprimul/to/MainActivity.java
+ com.caprimul.to.MainActivity
+com/caprimul/to/BuildConfig.java
+ com.caprimul.to.BuildConfig

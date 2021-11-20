@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to/app/data/todo.dart';
-import 'package:to/app/modules/home/views/todoadd.dart';
 
 class HomeController extends GetxController {
   Box todoBox = Hive.box<Todo>("todos");
@@ -11,13 +8,14 @@ class HomeController extends GetxController {
   List<Todo> get todos => _todos;
   addTodo(Todo todo) {
     _todos.add(todo);
+    print(todo.description);
     todoBox.add(todo);
     update();
   }
 
   TodoController() {
-    todoBox = Hive.box<Todo>("todos");
     _todos = [];
+    Box todoBox = Hive.box<Todo>("todos");
     for (int i = 0; i < todoBox.values.length; i++) {
       _todos.add(todoBox.getAt(i));
     }
@@ -32,9 +30,8 @@ class HomeController extends GetxController {
 
   deleteTodo(Todo todo) {
     int index = _todos.indexOf(todo);
-
     _todos.removeWhere((element) => element.id == todo.id);
-    todoBox.delete(index);
+    todoBox.deleteAt(index);
     update();
   }
 
@@ -48,6 +45,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    TodoController();
   }
 
   @override

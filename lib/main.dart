@@ -9,7 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:to/app/data/todo.dart';
 import 'app/routes/app_pages.dart';
 
-//the output of bulid is in " build\app\outputs\flutter-apk\app-release.apk"
+//the bulid APK in " build\app\outputs\flutter-apk\app-release.apk"
 Future<void> main() async {
   Hive.registerAdapter<Todo>(TodoAdapter());
   WidgetsFlutterBinding.ensureInitialized();

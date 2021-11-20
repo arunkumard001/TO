@@ -7,6 +7,7 @@ import 'package:to/app/modules/home/controllers/home_controller.dart';
 class TodoAdd extends StatefulWidget {
   String type;
   Todo todo;
+  static String description = "";
   TodoAdd(
     this.todo, {
     Key? key,
@@ -18,7 +19,7 @@ class TodoAdd extends StatefulWidget {
 
 class _TodoAddState extends State<TodoAdd> {
   final _formkey = GlobalKey<FormState>();
-  static String description = "";
+  String description = TodoAdd.description;
   final todocontroller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class _TodoAddState extends State<TodoAdd> {
                   }
                   Navigator.of(context).pop();
                 },
-                child: Text(widget.todo != null ? "update" : "Add a Note"),
+                child: Text(widget.todo == "update" ? "update" : "new"),
               )
             ],
           )),

@@ -52,16 +52,20 @@ class HomeView extends GetView<HomeController> {
             child: Icon(Icons.add),
             onPressed: () {
               Future.delayed(Duration.zero, () async {
-                showModalBottomSheet(
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) {
-                      return TodoAdd(
-                        Todo(description: ""),
-                        type: "new",
-                      );
-                    });
+                showDetail(context, "new");
               });
             }));
+  }
+
+  Future<dynamic> showDetail(BuildContext context, _type) {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return TodoAdd(
+            Todo(description: TodoAdd.description),
+            type: _type,
+          );
+        });
   }
 }

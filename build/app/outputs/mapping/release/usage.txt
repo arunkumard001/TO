@@ -703,8 +703,8 @@ androidx.core.app.NotificationBuilderWithBuilderAccessor
 com.google.common.cache.LocalCache$ValueReference
 androidx.viewpager.widget.ViewPager$3
 io.flutter.app.FlutterActivityDelegate$1
-androidx.core.app.FrameMetricsAggregator$FrameMetricsBaseImpl
 com.google.common.base.CharMatcher$IsEither
+androidx.core.app.FrameMetricsAggregator$FrameMetricsBaseImpl
 com.google.common.collect.CompactHashMap$1
 com.google.common.collect.ForwardingNavigableSet
 com.caprimul.to.R$styleable
@@ -3477,8 +3477,8 @@ com.google.common.collect.ReverseOrdering
 com.google.common.base.CharMatcher$JavaLowerCase
 com.google.common.collect.MapMakerInternalMap$AbstractWeakKeyEntry
 com.google.common.collect.HashBiMap$ValueSet
-com.google.common.base.JdkPattern$JdkMatcher
 com.google.errorprone.annotations.CheckReturnValue
+com.google.common.base.JdkPattern$JdkMatcher
 com.google.common.util.concurrent.Futures$FutureCombiner
 androidx.annotation.StringRes
 androidx.lifecycle.OnLifecycleEvent

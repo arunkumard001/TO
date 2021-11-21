@@ -21,19 +21,12 @@ class HomeView extends GetView<HomeController> {
               itemCount: todoController.todos.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                    hoverColor: Colors.black54,
                     onTap: () {
-                      showModalBottomSheet(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (context) {
-                          return TodoAdd(
-                            todocontroller.todos[index],
-                            type: "update",
-                          );
-                        },
+                      showDetail(
+                        context,
+                        "Update",
+                        todocontroller.todos[index],
                       );
                     },
                     leading: Checkbox(
@@ -44,35 +37,40 @@ class HomeView extends GetView<HomeController> {
                         }),
                     title: Text(
                         todocontroller.todos[index].description.toString()),
-                    trailing: IconButton(
-                      onPressed: () {
-                        todocontroller.deleteTodo(todocontroller.todos[index]);
-                      },
-                      icon: Icon(Icons.delete_rounded),
-                    ));
+                    trailing: !todocontroller.todos[index].isCompleted
+                        ? null
+                        : IconButton(
+                            onPressed: () {
+                              todocontroller
+                                  .deleteTodo(todocontroller.todos[index]);
+                            },
+                            icon: Icon(Icons.delete_rounded),
+                          ));
               });
         }),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {
-              Future.delayed(Duration.zero, () async {
-                showDetail(context, "new");
-              });
+              showDetail(
+                context,
+                "new",
+                Todo(description: TodoAdd.description),
+              );
             }));
   }
 
-  Future<dynamic> showDetail(BuildContext context, _type) {
-    return showModalBottomSheet(
-        isScrollControlled: true,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        context: context,
-        builder: (context) {
-          return TodoAdd(
-            Todo(description: TodoAdd.description),
-            type: _type,
-          );
-        });
+  Future<dynamic> showDetail(BuildContext context, _type, todo) {
+    return Get.bottomSheet(
+      TodoAdd(
+        todo,
+        type: _type,
+      ),
+      backgroundColor: Colors.white,
+      ignoreSafeArea: false,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+    );
   }
 }
